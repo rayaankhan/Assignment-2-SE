@@ -1,7 +1,7 @@
 package flight.reservation.order;
 
 import flight.reservation.Customer;
-import flight.reservation.flight.ScheduledFlight;
+import flight.reservation.flight.builder.ScheduledFlight;
 import flight.reservation.payment.*;
 
 import java.util.Arrays;

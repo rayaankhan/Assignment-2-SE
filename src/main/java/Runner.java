@@ -1,6 +1,6 @@
 import flight.reservation.Airport;
-import flight.reservation.flight.Schedule;
-import flight.reservation.flight.Flight;
+import flight.reservation.flight.builder.Schedule;
+import flight.reservation.flight.builder.Flight;
 import flight.reservation.plane.factory.planefactory.*;
 
 

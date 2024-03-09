@@ -1,8 +1,11 @@
-package flight.reservation;
+package flight_reservation;
 
-import flight.reservation.flight.Flight;
-import flight.reservation.flight.Schedule;
-import flight.reservation.flight.ScheduledFlight;
+import flight.reservation.Airport;
+import flight.reservation.Customer;
+import flight.reservation.Passenger;
+import flight.reservation.flight.builder.Flight;
+import flight.reservation.flight.builder.Schedule;
+import flight.reservation.flight.builder.ScheduledFlight;
 import flight.reservation.order.FlightOrder;
 import flight.reservation.payment.*;
 // import flight.reservation.plane.Helicopter;

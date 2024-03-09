@@ -1,4 +1,4 @@
-package flight.reservation.flight;
+package flight.reservation.flight.builder;
 
 import flight.reservation.Airport;
 // import flight.reservation.plane.Helicopter;

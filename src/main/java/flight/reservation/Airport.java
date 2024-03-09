@@ -1,6 +1,6 @@
 package flight.reservation;
 
-import flight.reservation.flight.Flight;
+import flight.reservation.flight.builder.Flight;
 
 import java.util.List;
 
