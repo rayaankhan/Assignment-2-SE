@@ -1,4 +1,8 @@
-package flight.reservation.flight;
+package flight.reservation.flight.builder;
+
+import flight.reservation.flight.builder.ScheduledFlightBuilder;
+import flight.reservation.flight.builder.ScheduledFlightDirector;
+import flight.reservation.flight.builder.ScheduledFlight;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +22,12 @@ public class Schedule {
     }
 
     public void scheduleFlight(Flight flight, Date date) {
-        ScheduledFlight scheduledFlight = new ScheduledFlight(flight.getNumber(), flight.getDeparture(), flight.getArrival(), flight.getAircraft(), date);
+        // ScheduledFlight scheduledFlight = new ScheduledFlight(flight.getNumber(), flight.getDeparture(), flight.getArrival(), flight.getAircraft(), date);
+        ScheduledFlightBuilder scheduledFlightBuilder = new ConcreteScheduledFlightBuilder(flight);
+        ScheduledFlightDirector scheduledFlightDirector = new ScheduledFlightDirector(scheduledFlightBuilder);
+        scheduledFlightDirector.construct(date, 100);
+
+        ScheduledFlight scheduledFlight = ((ConcreteScheduledFlightBuilder) scheduledFlightBuilder).build();
         scheduledFlights.add(scheduledFlight);
     }
 
