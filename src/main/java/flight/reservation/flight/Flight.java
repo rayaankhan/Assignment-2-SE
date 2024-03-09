@@ -1,9 +1,12 @@
 package flight.reservation.flight;
 
 import flight.reservation.Airport;
-import flight.reservation.plane.Helicopter;
-import flight.reservation.plane.PassengerDrone;
-import flight.reservation.plane.PassengerPlane;
+// import flight.reservation.plane.Helicopter;
+// import flight.reservation.plane. Drone;
+// import flight.reservation.plane. Plane;
+import flight.reservation.plane.products.helicopter.Helicopter;
+import flight.reservation.plane.products.plane.Plane;
+import flight.reservation.plane.products.drone.Drone;
 
 import java.util.Arrays;
 
@@ -31,11 +34,11 @@ public class Flight {
     private boolean isAircraftValid(Airport airport) {
         return Arrays.stream(airport.getAllowedAircrafts()).anyMatch(x -> {
             String model;
-            if (this.aircraft instanceof PassengerPlane) {
-                model = ((PassengerPlane) this.aircraft).model;
+            if (this.aircraft instanceof  Plane) {
+                model = (( Plane) this.aircraft).getModel();
             } else if (this.aircraft instanceof Helicopter) {
                 model = ((Helicopter) this.aircraft).getModel();
-            } else if (this.aircraft instanceof PassengerDrone) {
+            } else if (this.aircraft instanceof  Drone) {
                 model = "HypaHype";
             } else {
                 throw new IllegalArgumentException(String.format("Aircraft is not recognized"));
