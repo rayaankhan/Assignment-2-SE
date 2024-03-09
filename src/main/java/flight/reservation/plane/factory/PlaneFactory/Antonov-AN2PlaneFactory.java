@@ -1,12 +1,11 @@
-
+package main.java.flight.reservation.plane.factory.planefactory;
+import java.util.ArrayList;
+import main.java.flight.reservation.plane.factory.planefactory.PlaneFactory;
+import main.java.flight.reservation.plane.products.plane.Antonov_AN2Plane;
 
 public class Antonov_AN2Plane extends PlaneFactory {
-
-    public Antonov_AN2Plane(int passengerCapacity, int crewCapacity) {
-        super("Antonov_AN2", passengerCapacity, crewCapacity);
-    }
     @Override
-    public Plane CreateAntonov_AN2Plane() {
+    public Plane CreatePlane() {
         return new Antonov_AN2Plane();
     }
 }

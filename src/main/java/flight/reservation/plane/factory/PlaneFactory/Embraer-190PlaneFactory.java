@@ -1,12 +1,13 @@
 
+package main.java.flight.reservation.plane.factory.planefactory;
+import java.util.ArrayList;
+import main.java.flight.reservation.plane.factory.planefactory.PlaneFactory;
+import main.java.flight.reservation.plane.products.plane.Embraer_190Plane;
 
 public class Embraer_190Plane extends PlaneFactory {
 
-    public Embraer_190Plane(int passengerCapacity, int crewCapacity) {
-        super("Embraer_190", passengerCapacity, crewCapacity);
-    }
     @Override
-    public Plane CreateEmbraer_190Plane() {
+    public Plane CreatePlane() {
         return new Embraer_190Plane();
     }
 }

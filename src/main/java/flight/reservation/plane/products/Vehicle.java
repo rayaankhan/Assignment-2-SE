@@ -1,7 +1,7 @@
-
+package flight.reservation.plane.products;
 
 public abstract class Vehicle {
-    private string model;
+    private String model;
     private int passengerCapacity;
     private int crewCapacity;
 

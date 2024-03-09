@@ -1,12 +1,12 @@
-
+package main.java.flight.reservation.plane.factory.planefactory;
+import java.util.ArrayList;
+import main.java.flight.reservation.plane.factory.planefactory.PlaneFactory;
+import main.java.flight.reservation.plane.products.plane.A380Plane;
 
 public class A380PlaneFactory extends PlaneFactory {
-
-    public A380PlaneFactory(int passengerCapacity, int crewCapacity) {
-        super("A380", passengerCapacity, crewCapacity);
-    }
+        
     @Override
-    public Plane CreateA380Plane() {
+    public Plane CreatePlane() {
         return new A380Plane();
     }
 }

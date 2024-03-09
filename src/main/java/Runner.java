@@ -1,9 +1,8 @@
 import flight.reservation.Airport;
 import flight.reservation.flight.Schedule;
 import flight.reservation.flight.Flight;
-import flight.reservation.plane.Helicopter;
-import flight.reservation.plane.PassengerDrone;
-import flight.reservation.plane.PassengerPlane;
+import flight.reservation.plane.factory.planefactory.*;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,24 +18,28 @@ public class Runner {
             new Airport("Dubai International Airport", "DXB", "Garhoud, Dubai"),
             new Airport("Chengdu Shuangliu International Airport", "CTU", "Shuangliu-Wuhou, Chengdu, Sichuan")
     );
+        private static A350PlaneFactory a350PlaneFactory = new A350PlaneFactory();
+        private static A380PlaneFactory a380PlaneFactory = new A380PlaneFactory();
+        private static Antonov_AN2PlaneFactory antonov_an2PlaneFactory = new Antonov_AN2PlaneFactory();
+        private static Embraer_190PlaneFactory embraer_190PlaneFactory = new Embraer_190PlaneFactory();
 
     static List<Object> aircrafts = Arrays.asList(
-            new PassengerPlane("A380"),
-            new PassengerPlane("A350"),
-            new PassengerPlane("Embraer 190"),
-            new PassengerPlane("Antonov AN2"),
-            new Helicopter("H1"),
-            new PassengerDrone("HypaHype")
-    );
+            A350Plane a350plane = a350PlaneFactory.CreatePlane();
+            A380Plane a380plane = a380PlaneFactory.CreatePlane();
+            Antonov_AN2Plane antonov_an2plane = antonov_an2PlaneFactory.CreatePlane();
+            Embraer_190Plane embraer_1909plane = embraer_190PlaneFactory.CreatePlane();
 
-    static List<Flight> flights = Arrays.asList(
-            new Flight(1, airports.get(0), airports.get(1), aircrafts.get(0)),
-            new Flight(2, airports.get(1), airports.get(2), aircrafts.get(1)),
-            new Flight(3, airports.get(2), airports.get(4), aircrafts.get(2)),
-            new Flight(4, airports.get(3), airports.get(2), aircrafts.get(3)),
-            new Flight(5, airports.get(4), airports.get(2), aircrafts.get(4)),
-            new Flight(6, airports.get(5), airports.get(7), aircrafts.get(5))
     );
+    System.out.println(aircrafts[0].getModel());
+
+//     static List<Flight> flights = Arrays.asList(
+//             new Flight(1, airports.get(0), airports.get(1), aircrafts.get(0)),
+//             new Flight(2, airports.get(1), airports.get(2), aircrafts.get(1)),
+//             new Flight(3, airports.get(2), airports.get(4), aircrafts.get(2)),
+//             new Flight(4, airports.get(3), airports.get(2), aircrafts.get(3)),
+//             new Flight(5, airports.get(4), airports.get(2), aircrafts.get(4)),
+//             new Flight(6, airports.get(5), airports.get(7), aircrafts.get(5))
+//     );
 
     static Schedule schedule;
 
