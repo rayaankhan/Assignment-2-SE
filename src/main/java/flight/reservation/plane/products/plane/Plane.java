@@ -4,7 +4,7 @@ import java.util.List;
 import flight.reservation.plane.products.Vehicle;
 
 public abstract class Plane extends Vehicle {
-    public Plane(model,passengerCapacity,crewCapacity)
+    public Plane(String model, int passengerCapacity, int crewCapacity)
     {
         super(model,passengerCapacity,crewCapacity);
     }

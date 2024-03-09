@@ -5,7 +5,7 @@ import flight.reservation.plane.products.plane.Plane;
 public class Antonov_AN2Plane extends Plane {
     public Antonov_AN2Plane()
     {
-        super("Antonov AN-2", 15, 3);
+        super("Antonov AN2", 15, 3);
     }
     
     

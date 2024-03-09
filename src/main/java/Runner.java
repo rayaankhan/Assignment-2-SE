@@ -24,13 +24,13 @@ public class Runner {
         private static Embraer_190PlaneFactory embraer_190PlaneFactory = new Embraer_190PlaneFactory();
 
     static List<Object> aircrafts = Arrays.asList(
-            A350Plane a350plane = a350PlaneFactory.CreatePlane();
-            A380Plane a380plane = a380PlaneFactory.CreatePlane();
-            Antonov_AN2Plane antonov_an2plane = antonov_an2PlaneFactory.CreatePlane();
-            Embraer_190Plane embraer_1909plane = embraer_190PlaneFactory.CreatePlane();
+            a350PlaneFactory.CreatePlane(),
+            a380PlaneFactory.CreatePlane(),
+            antonov_an2PlaneFactory.CreatePlane(),
+            embraer_190PlaneFactory.CreatePlane()
 
     );
-    System.out.println(aircrafts[0].getModel());
+    // System.out.println(aircrafts[0].getModel());
 
 //     static List<Flight> flights = Arrays.asList(
 //             new Flight(1, airports.get(0), airports.get(1), aircrafts.get(0)),

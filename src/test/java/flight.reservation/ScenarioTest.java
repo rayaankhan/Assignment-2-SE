@@ -5,8 +5,28 @@ import flight.reservation.flight.Schedule;
 import flight.reservation.flight.ScheduledFlight;
 import flight.reservation.order.FlightOrder;
 import flight.reservation.payment.CreditCard;
-import flight.reservation.plane.Helicopter;
-import flight.reservation.plane.PassengerPlane;
+// import flight.reservation.plane.Helicopter;
+// import flight.reservation.plane. Plane;
+import flight.reservation.plane.products.drone.Drone;
+import flight.reservation.plane.products.helicopter.Helicopter;
+import flight.reservation.plane.products.plane.Plane;
+import flight.reservation.plane.factory.planefactory.A350PlaneFactory;
+import flight.reservation.plane.factory.planefactory.A380PlaneFactory;
+import flight.reservation.plane.factory.planefactory.Antonov_AN2PlaneFactory;
+import flight.reservation.plane.factory.planefactory.Embraer_190PlaneFactory;
+import flight.reservation.plane.factory.helicopterfactory.H1HelicopterFactory;
+import flight.reservation.plane.factory.dronefactory.HypaHypeDroneFactory;
+import flight.reservation.plane.factory.helicopterfactory.HelicopterFactory;
+import flight.reservation.plane.factory.dronefactory.DroneFactory;
+import flight.reservation.plane.factory.planefactory.PlaneFactory;
+import flight.reservation.plane.factory.dronefactory.DroneFactory;
+import flight.reservation.plane.products.drone.HypaHypeDrone;
+import flight.reservation.plane.products.helicopter.H1Helicopter;
+import flight.reservation.plane.products.plane.A350Plane;
+import flight.reservation.plane.products.plane.A380Plane;
+import flight.reservation.plane.products.plane.Antonov_AN2Plane;
+import flight.reservation.plane.products.plane.Embraer_190Plane;
+import flight.reservation.plane.products.helicopter.H2Helicopter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -57,7 +77,9 @@ public class ScenarioTest {
             @Test
             @DisplayName("then the flight should not be available")
             void thenFlightNotAvailable() {
-                assertThrows(IllegalArgumentException.class, () -> new Flight(1, startAirport, destinationAirport, new Helicopter("H1")));
+                H1HelicopterFactory h1HelicopterFactory = new H1HelicopterFactory();
+                Helicopter h1Helicopter = h1HelicopterFactory.CreateHelicopter();
+                assertThrows(IllegalArgumentException.class, () -> new Flight(1, startAirport, destinationAirport, h1Helicopter));
             }
 
         }
@@ -70,7 +92,10 @@ public class ScenarioTest {
             public void initFlights() {
                 startAirport = new Airport("John F. Kennedy International Airport", "JFK", "Queens, New York, New York");
                 destinationAirport = new Airport("Frankfurt Airport", "FRA", "Frankfurt, Hesse");
-                flight = new Flight(1, startAirport, destinationAirport, new Helicopter("H1"));
+                H1HelicopterFactory h1HelicopterFactory = new H1HelicopterFactory();
+                Helicopter h1Helicopter = h1HelicopterFactory.CreateHelicopter();
+
+                flight = new Flight(1, startAirport, destinationAirport, h1Helicopter);
                 Date departure = TestUtil.addDays(Date.from(Instant.now()), 3);
                 schedule.scheduleFlight(flight, departure);
             }
@@ -138,7 +163,10 @@ public class ScenarioTest {
             // flights
             startAirport = new Airport("Berlin Airport", "BER", "Berlin, Berlin");
             destinationAirport = new Airport("Frankfurt Airport", "FRA", "Frankfurt, Hesse");
-            flight = new Flight(1, startAirport, destinationAirport, new PassengerPlane("A380"));
+            A380PlaneFactory a380PlaneFactory = new A380PlaneFactory();
+            Plane a380Plane = a380PlaneFactory.CreatePlane();
+
+            flight = new Flight(1, startAirport, destinationAirport, a380Plane);
             Date departure = TestUtil.addDays(Date.from(Instant.now()), 3);
             schedule.scheduleFlight(flight, departure);
             // customer
