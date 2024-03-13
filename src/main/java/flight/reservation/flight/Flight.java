@@ -1,12 +1,9 @@
-package flight.reservation.flight.builder;
+package flight.reservation.flight;
 
 import flight.reservation.Airport;
-// import flight.reservation.plane.Helicopter;
-// import flight.reservation.plane. Drone;
-// import flight.reservation.plane. Plane;
-import flight.reservation.plane.products.helicopter.Helicopter;
-import flight.reservation.plane.products.plane.Plane;
-import flight.reservation.plane.products.drone.Drone;
+import flight.reservation.plane.Helicopter;
+import flight.reservation.plane.PassengerDrone;
+import flight.reservation.plane.PassengerPlane;
 
 import java.util.Arrays;
 
@@ -34,11 +31,11 @@ public class Flight {
     private boolean isAircraftValid(Airport airport) {
         return Arrays.stream(airport.getAllowedAircrafts()).anyMatch(x -> {
             String model;
-            if (this.aircraft instanceof  Plane) {
-                model = (( Plane) this.aircraft).getModel();
+            if (this.aircraft instanceof PassengerPlane) {
+                model = ((PassengerPlane) this.aircraft).model;
             } else if (this.aircraft instanceof Helicopter) {
                 model = ((Helicopter) this.aircraft).getModel();
-            } else if (this.aircraft instanceof  Drone) {
+            } else if (this.aircraft instanceof PassengerDrone) {
                 model = "HypaHype";
             } else {
                 throw new IllegalArgumentException(String.format("Aircraft is not recognized"));

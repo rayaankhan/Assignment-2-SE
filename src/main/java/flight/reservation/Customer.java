@@ -1,6 +1,6 @@
 package flight.reservation;
 
-import flight.reservation.flight.builder.ScheduledFlight;
+import flight.reservation.flight.ScheduledFlight;
 import flight.reservation.order.FlightOrder;
 import flight.reservation.order.Order;
 

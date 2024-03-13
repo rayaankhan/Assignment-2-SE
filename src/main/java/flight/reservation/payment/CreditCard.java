@@ -1,11 +1,12 @@
 package flight.reservation.payment;
+import flight.reservation.payment.Payment;
 
 import java.util.Date;
 
 /**
  * Dummy credit card class.
  */
-public class CreditCard implements PaymentStrategy{
+public class CreditCard implements Payment{
     private double amount;
     private String number;
     private Date date;
@@ -20,6 +21,7 @@ public class CreditCard implements PaymentStrategy{
         this.setValid();
     }
 
+
     public void setAmount(double amount) {
         this.amount = amount;
     }
@@ -28,28 +30,14 @@ public class CreditCard implements PaymentStrategy{
         return amount;
     }
 
+    @Override
     public boolean isValid() {
         return valid;
     }
 
+    @Override
     public void setValid() {
         // Dummy validation
         this.valid = number.length() > 0 && date.getTime() > System.currentTimeMillis() && !cvv.equals("000");
-    }
-
-    @Override
-    public boolean pay(double price) throws IllegalStateException {
-        if (this.isValid()) {
-            System.out.println("Paying " + price + " using Credit Card.");
-            double remainingAmount = this.getAmount() - price;
-            if (remainingAmount < 0) {
-                System.out.printf("Card limit reached - Balance: %f%n", remainingAmount);
-                throw new IllegalStateException("Card limit reached");
-            }
-            this.setAmount(remainingAmount);
-            return true;
-        } else {
-            throw new IllegalStateException("Invalid credit card");
-        }
     }
 }

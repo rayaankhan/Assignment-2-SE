@@ -1,33 +1,11 @@
-package flight_reservation;
+package flight.reservation;
 
-import flight.reservation.Airport;
-import flight.reservation.flight.builder.Flight;
-import flight.reservation.flight.builder.Schedule;
-import flight.reservation.flight.builder.ScheduledFlight;
-// import flight.reservation.plane.Helicopter;
-// import flight.reservation.plane. Drone;
-// import flight.reservation.plane. Plane;
-import flight.reservation.plane.products.drone.Drone;
-import flight.reservation.plane.products.helicopter.Helicopter;
-import flight.reservation.plane.products.plane.Plane;
-import flight.reservation.plane.factory.planefactory.A350PlaneFactory;
-import flight.reservation.plane.factory.planefactory.A380PlaneFactory;
-import flight.reservation.plane.factory.planefactory.Antonov_AN2PlaneFactory;
-import flight.reservation.plane.factory.planefactory.Embraer_190PlaneFactory;
-import flight.reservation.plane.factory.helicopterfactory.H1HelicopterFactory;
-import flight.reservation.plane.factory.dronefactory.HypaHypeDroneFactory;
-import flight.reservation.plane.factory.helicopterfactory.HelicopterFactory;
-import flight.reservation.plane.factory.dronefactory.DroneFactory;
-import flight.reservation.plane.factory.planefactory.PlaneFactory;
-import flight.reservation.plane.factory.dronefactory.DroneFactory;
-import flight.reservation.plane.products.drone.HypaHypeDrone;
-import flight.reservation.plane.products.helicopter.H1Helicopter;
-import flight.reservation.plane.products.plane.A350Plane;
-import flight.reservation.plane.products.plane.A380Plane;
-import flight.reservation.plane.products.plane.Antonov_AN2Plane;
-import flight.reservation.plane.products.plane.Embraer_190Plane;
-import flight.reservation.plane.products.helicopter.H2Helicopter;
-
+import flight.reservation.flight.Flight;
+import flight.reservation.flight.Schedule;
+import flight.reservation.flight.ScheduledFlight;
+import flight.reservation.plane.Helicopter;
+import flight.reservation.plane.PassengerDrone;
+import flight.reservation.plane.PassengerPlane;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -77,9 +55,7 @@ public class ScheduleTest {
         @Test
         @DisplayName("then removing a flight should still yield an empty list")
         void thenScheduleShouldYieldEmpty() {
-            A380PlaneFactory a380PlaneFactory = new A380PlaneFactory();
-            Plane a380Plane = a380PlaneFactory.CreatePlane();
-            schedule.removeFlight(new Flight(1, new Airport("a", "a", "a"), new Airport("b", "b", "b"), a380Plane));
+            schedule.removeFlight(new Flight(1, new Airport("a", "a", "a"), new Airport("b", "b", "b"), new PassengerPlane("A380")));
             assertEquals(0, schedule.getScheduledFlights().size());
         }
 
@@ -94,10 +70,8 @@ public class ScheduleTest {
             void scheduleOneFlight() {
                 Airport startAirport = new Airport("Berlin Airport", "BER", "Berlin, Berlin");
                 Airport destAirport = new Airport("Frankfurt Airport", "FRA", "Frankfurt, Hesse");
-                A380PlaneFactory a380PlaneFactory = new A380PlaneFactory();
-                Plane a380Plane = a380PlaneFactory.CreatePlane();
 
-                Plane aircraft = a380Plane;
+                PassengerPlane aircraft = new PassengerPlane("A380");
                 flight = new Flight(1, startAirport, destAirport, aircraft);
                 departure = TestUtil.addDays(Date.from(Instant.now()), 3);
                 schedule.scheduleFlight(flight, departure);
@@ -148,28 +122,13 @@ public class ScheduleTest {
                 new Airport("Chengdu Shuangliu International Airport", "CTU", "Shuangliu-Wuhou, Chengdu, Sichuan")
         );
 
-        A350PlaneFactory a350PlaneFactory = new A350PlaneFactory();
-        Plane a350Plane = a350PlaneFactory.CreatePlane();
-        A380PlaneFactory a380PlaneFactory = new A380PlaneFactory();
-        Plane a380Plane = a380PlaneFactory.CreatePlane();
-        Antonov_AN2PlaneFactory antonov_an2PlaneFactory = new Antonov_AN2PlaneFactory();
-        Plane antonov_an2Plane = antonov_an2PlaneFactory.CreatePlane();
-        Embraer_190PlaneFactory embraer_190PlaneFactory = new Embraer_190PlaneFactory();
-        Plane embraer_190Plane = embraer_190PlaneFactory.CreatePlane();
-
-        H1HelicopterFactory h1HelicopterFactory = new H1HelicopterFactory();
-        Helicopter h1Helicopter = h1HelicopterFactory.CreateHelicopter();
-        
-        HypaHypeDroneFactory hypaHypeDroneFactory = new HypaHypeDroneFactory();
-        Drone hypaHypeDrone = hypaHypeDroneFactory.CreateDrone();
-
         List<Flight> flights = Arrays.asList(
-                new Flight(1, airports.get(0), airports.get(1), a350Plane),
-                new Flight(2, airports.get(1), airports.get(2), a380Plane),
-                new Flight(3, airports.get(2), airports.get(4), embraer_190Plane),
-                new Flight(4, airports.get(3), airports.get(2), antonov_an2Plane),
-                new Flight(5, airports.get(4), airports.get(2), h1Helicopter),
-                new Flight(6, airports.get(5), airports.get(7), hypaHypeDrone)
+                new Flight(1, airports.get(0), airports.get(1), new PassengerPlane("A350")),
+                new Flight(2, airports.get(1), airports.get(2), new PassengerPlane("A380")),
+                new Flight(3, airports.get(2), airports.get(4), new PassengerPlane("Embraer 190")),
+                new Flight(4, airports.get(3), airports.get(2), new PassengerPlane("Antonov AN2")),
+                new Flight(5, airports.get(4), airports.get(2), new Helicopter("H1")),
+                new Flight(6, airports.get(5), airports.get(7), new PassengerDrone("HypaHype"))
         );
 
         @BeforeEach
