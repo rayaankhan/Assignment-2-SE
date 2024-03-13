@@ -8,7 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Customer {
+// Observer Interface
+interface FlightObserver {
+    void update(String message);
+}
+
+public class Customer implements FlightObserver  {
 
     private String email;
     private String name;
@@ -18,6 +23,13 @@ public class Customer {
         this.name = name;
         this.email = email;
         this.orders = new ArrayList<>();
+    }
+
+    @Override
+    public void update(String message) {
+        // Implement the logic to handle the update message.
+        // For example, print out the notification message or update the customer's orders based on the message.
+        System.out.println("Notification for " + this.name + ": " + message);
     }
 
     public FlightOrder createOrder(List<String> passengerNames, List<ScheduledFlight> flights, double price) {
