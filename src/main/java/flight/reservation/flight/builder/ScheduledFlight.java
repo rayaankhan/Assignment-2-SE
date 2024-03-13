@@ -1,6 +1,7 @@
 package flight.reservation.flight.builder;
 
 import flight.reservation.Airport;
+import flight.reservation.Customer; // Make sure to import the Customer class
 import flight.reservation.Passenger;
 import flight.reservation.plane.products.helicopter.Helicopter;
 import flight.reservation.plane.products.plane.Plane;
@@ -34,12 +35,20 @@ public class ScheduledFlight extends Flight {
         throw new NoSuchFieldException("this aircraft has no information about its crew capacity");
     }
 
-    public void addPassengers(List<Passenger> passengers) {
+    public void addPassengers(List<Passenger> passengers,Customer customer) {
         this.passengers.addAll(passengers);
+        this.addObserver(customer); // Add the customer as an observer
+        // Notify the customer about the successful addition
+        this.notifyObservers("You have been successfully added to flight " + this.getNumber());
+   
     }
 
-    public void removePassengers(List<Passenger> passengers) {
+    public void removePassengers(List<Passenger> passengers,Customer customer) {
         this.passengers.removeAll(passengers);
+        this.removeObserver(customer); // Remove the customer as an observer
+        // Notify the customer about the successful removal
+        this.notifyObservers("You have been successfully removed from flight " + this.getNumber());
+   
     }
 
     public int getCapacity() throws NoSuchFieldException {
