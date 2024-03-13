@@ -1,5 +1,5 @@
 package flight.reservation.flight.builder;
-
+import flight.reservation.Customer; // Import the Customer class
 import flight.reservation.Airport;
 // import flight.reservation.plane.Helicopter;
 // import flight.reservation.plane. Drone;
@@ -8,7 +8,9 @@ import flight.reservation.plane.products.helicopter.Helicopter;
 import flight.reservation.plane.products.plane.Plane;
 import flight.reservation.plane.products.drone.Drone;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Flight {
 
@@ -16,13 +18,34 @@ public class Flight {
     private Airport departure;
     private Airport arrival;
     protected Object aircraft;
+    private List<Customer> observers; // List to hold all observers
 
     public Flight(int number, Airport departure, Airport arrival, Object aircraft) throws IllegalArgumentException {
         this.number = number;
         this.departure = departure;
         this.arrival = arrival;
         this.aircraft = aircraft;
+        this.observers = new ArrayList<>(); // Initialize the observers list
         checkValidity();
+    }
+
+    // Method to add an observer
+    public void addObserver(Customer customer) {
+        if (!observers.contains(customer)) {
+            observers.add(customer);
+        }
+    }
+
+    // Method to remove an observer
+    public void removeObserver(Customer customer) {
+        observers.remove(customer);
+    }
+
+    // Method to notify all observers about an event
+    public void notifyObservers(String message) {
+        for (Customer observer : observers) {
+            observer.update(message); // Assuming Customer class has an update method
+        }
     }
 
     private void checkValidity() throws IllegalArgumentException {
